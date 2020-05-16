@@ -26,4 +26,4 @@ class Program
 
 ```
 
-![](Assets/InteractionListConsole.gif)
+![](Assest/InteractionListConsole.gif)
