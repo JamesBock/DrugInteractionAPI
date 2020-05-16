@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLMDrugInteractionParser;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -19,35 +20,39 @@ namespace NLMDrugInteractionParser.Tests
         [TestMethod()]
         public void ParseSingleDrugInteractionsTest()
         {
+            var reader = new StreamReader(@"C:\Users\James\source\repos\NLMDrugInteractionParserSolution\NLMDrugInteractionParser\SingleDrugMuliIngredientString.txt");
+            var jstring = reader.ReadToEnd();
             var parser = new SingleDrugInteractionParser();
-            var interactions = parser.ParseDrugInteractions(SingleInteractionString.JString);
-           // var interactions = _client.GetInteractions("88014");
+            var interactions = parser.ParseDrugInteractions(jstring);
+            //var interactions = _client.GetInteractions(jstring);
 
             //Are medication with multiple ingredients being parsed correctly?
-            Assert.AreEqual("rizatriptan (88014) is resolved to rizatriptan (88014)", interactions.Select(o=>o.Comment).FirstOrDefault());
+            Assert.AreEqual("acetaminophen 33.3 MG/ML / diphenhydramine hydrochloride 1.67 MG/ML [Tylenol PM] (1092374) is resolved to acetaminophen (161)", interactions.Select(o => o.Comment).FirstOrDefault());
             //Test for JAMIA interaction inclusion. All DrugBank interactions have "N/A" as severity
-            Assert.AreEqual(true, interactions
-                                        .SelectMany(x => x.DrugInteractionDetails
-                                        .Select(o => o.Severity))
-                                        .Any(s => s == "high"));
+            //Assert.AreEqual(true, interactions
+            //                            .SelectMany(x => x.DrugInteractionDetails
+            //                           .Select(o => o.Severity))
+            //                            .Any(s => s == "high"));
         }
-
-         [TestMethod()]
+        [TestMethod()]
         public async Task ParseSingleDrugInteractionsAsyncTest()
         {
+            var reader = new StreamReader(@"C:\Users\James\source\repos\NLMDrugInteractionParserSolution\NLMDrugInteractionParser\SingleDrugMuliIngredientString.txt");
+            var jstring = await reader.ReadToEndAsync();
             var parser = new SingleDrugInteractionParser();
-            var interactions = await parser.ParseDrugInteractionsAsync(SingleInteractionString.JString);
-            //var interactions = await _client.GetInteractionsAsync("88014");
+            var interactions = await  parser.ParseDrugInteractionsAsync(jstring);
+            //var interactions = _client.GetInteractions(jstring);
 
             //Are medication with multiple ingredients being parsed correctly?
-            Assert.AreEqual("rizatriptan (88014) is resolved to rizatriptan (88014)", interactions.Select(o=>o.Comment).FirstOrDefault());
+            Assert.AreEqual("acetaminophen 33.3 MG/ML / diphenhydramine hydrochloride 1.67 MG/ML [Tylenol PM] (1092374) is resolved to acetaminophen (161)", interactions.Select(o => o.Comment).FirstOrDefault());
             //Test for JAMIA interaction inclusion. All DrugBank interactions have "N/A" as severity
-            Assert.AreEqual(true, interactions
-                                        .SelectMany(x => x.DrugInteractionDetails
-                                        .Select(o => o.Severity))
-                                        .Any(s => s == "high"));
+            //Assert.AreEqual(true, interactions
+            //                            .SelectMany(x => x.DrugInteractionDetails
+            //                           .Select(o => o.Severity))
+            //                            .Any(s => s == "high"));
         }
 
+      
         [TestMethod()]
         public void ParseDrugInteractionsTest()
         {            
