@@ -17,6 +17,7 @@ namespace NLMDrugInteractionParser
         /// <summary>
         /// blob that contains all interaction assertions between to medications. May be multiple if a medication has multiple ingredients.
         /// </summary>
+        /// 
         public string Comment { get; set; }
 
         /// <summary>
