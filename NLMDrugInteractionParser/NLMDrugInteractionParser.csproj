@@ -8,12 +8,13 @@
     <Company>LockStep Health</Company>
     <Product>Drug Interaction API</Product>
     <Version>0.1.1</Version>
-    <Description>Allows user to work with drug-drug interactions returned from the NLM's Drug Interaction API as POCOs
+    <Description>Allows user to work with POCOs of drug-drug interactions returned from the NLM's Drug Interaction.
 
 Required Statement from NLM: "This product uses publicly available data from the U.S. National Library of Medicine (NLM), National Institutes of Health, Department of Health and Human Services; NLM is not responsible for the product and does not endorse or recommend this or any other product."</Description>
     <PackageTags>Health, Healthtech, Healthcare, drug, drugs, medication, medications</PackageTags>
-    <PackageReleaseNotes>Initial support is for the list endpoint of the NLM's API</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for single RxCUI endpoint</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/JamesBock/DrugInteractionAPI</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
