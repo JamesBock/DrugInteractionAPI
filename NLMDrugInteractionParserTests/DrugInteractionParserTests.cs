@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace NLMDrugInteractionParser.Tests
         [TestMethod()]
         public void ParseSingleDrugInteractionsTest()
         {
-            var reader = new StreamReader(@"C:\Users\James\source\repos\NLMDrugInteractionParserSolution\NLMDrugInteractionParserTests\TestJsonText\SingleDrugMuliIngredientString.txt");
+            var reader = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TestJsonText\SingleDrugMuliIngredientString.txt"));
             var jstring = reader.ReadToEnd();
             var parser = new SingleDrugInteractionParser();
             var interactions = parser.ParseDrugInteractions(jstring);
@@ -39,7 +40,7 @@ namespace NLMDrugInteractionParser.Tests
         {
             //var interactions = _client.GetInteractions(jstring);
 
-            var reader = new StreamReader(@"C:\Users\James\source\repos\NLMDrugInteractionParserSolution\NLMDrugInteractionParserTests\TestJsonText\SingleDrugMuliIngredientString.txt");
+            var reader = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TestJsonText\SingleDrugMuliIngredientString.txt"));
             var jstring = await reader.ReadToEndAsync();
             var parser = new SingleDrugInteractionParser();
             var interactions = await  parser.ParseDrugInteractionsAsync(jstring);
@@ -56,10 +57,10 @@ namespace NLMDrugInteractionParser.Tests
       
         [TestMethod()]
         public void ParseDrugInteractionsTest()
-        {            
+        {
             //var interactions = _client.GetInteractionList(rxCUIs);
 
-            var reader = new StreamReader(@"C:\Users\James\source\repos\NLMDrugInteractionParserSolution\NLMDrugInteractionParserTests\TestJsonText\MultiDrugString.txt");
+            var reader = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TestJsonText\MultiDrugString.txt"));
             var jstring = reader.ReadToEnd();
             var parser = new DrugInteractionParser();
             var interactions = parser.ParseDrugInteractions(jstring);
@@ -86,7 +87,7 @@ namespace NLMDrugInteractionParser.Tests
         public async Task ParseDrugInteractionsAsyncTest()
         {
             //var response = _client.GetInteractionListAsync(rxCUIs);
-            var reader = new StreamReader(@"C:\Users\James\source\repos\NLMDrugInteractionParserSolution\NLMDrugInteractionParserTests\TestJsonText\MultiDrugString.txt");
+            var reader = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TestJsonText\MultiDrugString.txt"));
             var jstring = await reader.ReadToEndAsync();
             var parser = new DrugInteractionParser();
             var response = parser.ParseDrugInteractionsAsync(jstring);
