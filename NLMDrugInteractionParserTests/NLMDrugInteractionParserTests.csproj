@@ -17,4 +17,16 @@
     <ProjectReference Include="..\NLMDrugInteractionParser\NLMDrugInteractionParser.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestJsonText\MultiDrugString.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestJsonText\SingleDrugMuliIngredientString.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestJsonText\SingleDrugSingleIngredient.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
